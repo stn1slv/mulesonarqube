@@ -1,0 +1,16 @@
+# version: '3.8'
+
+services:
+  sonarqube:
+    # build: .
+    image: stn1slv/sonarqube-for-mule:1.0
+    container_name: sonarqube
+    environment:
+      - SONAR_SECURITY_FORCE_AUTHENTICATION=false # Disable security authentication
+      - SONAR_FORCEAUTHENTICATION=false # Disable authentication
+    ports:
+      - "9000:9000"
+    volumes:
+      # Mount rule files
+      - ./config-files/rules-3.xml:/opt/sonarqube/extensions/plugins/rules-3.xml:ro
+      - ./config-files/rules-4.xml:/opt/sonarqube/extensions/plugins/rules-4.xml:ro
