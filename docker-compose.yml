@@ -3,7 +3,7 @@
 services:
   sonarqube:
     # build: .
-    image: stn1slv/sonarqube-for-mule:1.0
+    image: stn1slv/sonarqube-for-mule:9.9 # The version of SonarQube Community for Mule
     container_name: sonarqube
     environment:
       - SONAR_SECURITY_FORCE_AUTHENTICATION=false # Disable security authentication
