@@ -35,7 +35,7 @@ This project provides a containerized SonarQube instance pre-configured with the
 
 2. Start SonarQube using Docker Compose:
    ```bash
-   docker-compose up -d
+   docker-compose up
    ```
 
 3. Access SonarQube at `http://localhost:9000`
@@ -45,12 +45,10 @@ This project provides a containerized SonarQube instance pre-configured with the
 If you prefer to use Docker directly without Docker Compose:
 
 ```bash
-docker run -d \
+docker run \
   --name mulesonarqube \
   -p 9000:9000 \
-  -v sonar_data:/opt/sonarqube/data \
-  -v sonar_logs:/opt/sonarqube/logs \
-  -v sonar_extensions:/opt/sonarqube/extensions \
+  -v ./config-files:/opt/sonarqube/config-files \
   stn1slv/sonarqube-for-mule:9.9
 ```
 
@@ -76,9 +74,6 @@ If you want to build the image yourself:
    docker run \
      --name mulesonarqube \
      -p 9000:9000 \
-     -v sonar_data:/opt/sonarqube/data \
-     -v sonar_logs:/opt/sonarqube/logs \
-     -v sonar_extensions:/opt/sonarqube/extensions \
      -v ./config-files:/opt/sonarqube/config-files \
      mulesonarqube:latest
    ```
@@ -88,12 +83,20 @@ If you want to build the image yourself:
 ### Analyzing Your Mule Project
 
 1. Install SonarQube Scanner in your project or use the Maven plugin
-2. Run the analysis:
+2. Get SonarQube token:
+   ```bash
+   curl -s -X POST -u admin:admin "http://localhost:9000/api/user_tokens/generate" \
+      -d "name=auto-token-$(date +%s)" \
+      -d "login=admin" | \
+      grep -o '"token":"[^"]*"' | cut -d'"' -f4
+   ```
+3. Run the analysis:
    ```bash
    mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 \ 
          -Dsonar.sources=src/main/mule \ 
          -Dsonar.mule.file.suffixes=xml \  
-         -Dsonar.xml.file.suffixes=xsd,xsl
+         -Dsonar.xml.file.suffixes=xsd,xsl \
+         -Dsonar.login=<SONARQUBE_TOKEN>
    ```
 
 ## Rule Sets
