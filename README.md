@@ -88,17 +88,12 @@ If you want to build the image yourself:
 ### Analyzing Your Mule Project
 
 1. Install SonarQube Scanner in your project or use the Maven plugin
-2. Configure your project with the SonarQube server URL:
-   ```properties
-   sonar.host.url=http://localhost:9000
-   sonar.projectKey=your-mule-project
-   sonar.projectName=Your Mule Project
-   sonar.sources=src/main/mule
-   ```
-
-3. Run the analysis:
+2. Run the analysis:
    ```bash
-   mvn sonar:sonar
+   mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 \ 
+         -Dsonar.sources=src/main/mule \ 
+         -Dsonar.mule.file.suffixes=xml \  
+         -Dsonar.xml.file.suffixes=xsd,xsl
    ```
 
 ## Rule Sets
