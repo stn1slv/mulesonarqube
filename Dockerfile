@@ -6,7 +6,7 @@ RUN apk add --no-cache curl
 # Download Mule SonarQube plugin
 RUN curl -L -f --retry 3 --retry-delay 5 \
     -o /tmp/mule-validation-sonarqube-plugin-mule.jar \
-    https://github.com/stn1slv/mule-sonarqube-plugin/releases/download/1.1.0/mule-validation-sonarqube-plugin-1.1.0-mule.jar
+    https://github.com/stn1slv/mule-sonarqube-plugin/releases/download/1.1.3/mule-validation-sonarqube-plugin-1.1.3-mule.jar
 
 #Dockerizing SonarQube
 FROM    sonarqube:9.9-community

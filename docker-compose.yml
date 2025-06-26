@@ -12,5 +12,4 @@ services:
       - "9000:9000"
     volumes:
       # Mount rule files
-      - ./config-files/rules-3.xml:/opt/sonarqube/extensions/plugins/rules-3.xml:ro
       - ./config-files/rules-4.xml:/opt/sonarqube/extensions/plugins/rules-4.xml:ro

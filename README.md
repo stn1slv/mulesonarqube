@@ -4,12 +4,12 @@ A Docker-based SonarQube setup with the Mule validation plugin for static code a
 
 ## Overview
 
-This project provides a containerized SonarQube instance pre-configured with the MuleSoft validation plugin, enabling comprehensive static code analysis for both Mule 3 and Mule 4 applications. It includes custom rule sets that enforce MuleSoft best practices and coding standards.
+This project provides a containerized SonarQube instance pre-configured with the MuleSoft validation plugin, enabling comprehensive static code analysis for Mule 4 applications. It includes custom rule sets that enforce MuleSoft best practices and coding standards.
 
 ## Features
 
 - **SonarQube 9.9 Community Edition** with Mule plugin pre-installed
-- **Multi-version support** for both Mule 3 and Mule 4 applications
+- **Mule 4 support** for comprehensive static code analysis
 - **Custom rule sets** covering:
   - Application structure and configuration
   - Flow and sub-flow best practices
@@ -101,25 +101,7 @@ If you want to build the image yourself:
 
 ## Rule Sets
 
-> **Note:** The included rule files (`rules-3.xml` and `rules-4.xml`) are provided as examples to demonstrate the plugin's capabilities. Users should customize these rules according to their specific project requirements, coding standards, and organizational best practices. You can modify the existing rules or create entirely new rule sets while maintaining the same filenames.
-
-### Mule 3 Rules (`rules-3.xml`)
-
-**Application Rules:**
-- APIKit configuration validation
-- Global exception strategy requirements
-
-**Flow Rules:**
-- Flow count limitations (max 10 per file)
-- Sub-flow count limitations (max 5 per file)
-- Naming convention enforcement
-- Security checks for encryption keys
-
-**Configuration Rules:**
-- Property management validation
-- Security configuration checks
-- HTTP protocol enforcement (HTTPS)
-- Data transformation best practices
+> **Note:** The included rule file (`rules-4.xml`) is provided as an example to demonstrate the plugin's capabilities. Users should customize these rules according to their specific project requirements, coding standards, and organizational best practices. You can modify the existing rules or create entirely new rule sets while maintaining the same filename.
 
 ### Mule 4 Rules (`rules-4.xml`)
 
@@ -150,8 +132,7 @@ If you want to build the image yourself:
 
 ### Adding Custom Rules
 
-1. Edit the rule files in `config-files/`:
-   - `rules-3.xml` for Mule 3 specific rules
+1. Edit the rule file in `config-files/`:
    - `rules-4.xml` for Mule 4 specific rules
 
 2. Restart the container to apply changes:
